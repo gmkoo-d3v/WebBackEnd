@@ -19,7 +19,22 @@
 	
 			
 	*/
-
+	request.setCharacterEncoding("UTF-8");
+	String id = request.getParameter("id");
+	/*
+		model .... mvc 흉내 jsp도 가능하니 
+		JSP 요청을 받으면
+		>> model 단을 나름 쓰니 
+		 DTO DAO를 쓴다는 소리
+		 	MemberDao memberDao = new MemberDao();
+			MemberDto memeberDto = new MemberDto();
+			
+			memberDto.setId(id);
+			
+		//	memberDao.insertDate(memberDto);
+			- > int result = memberDao.insertDate(memberDto);
+			클라이언트에게 가입성공 메세지 전달			
+	*/
 %>
 
 
@@ -31,6 +46,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	1. 입력값 : <%=id %><br>
+	2. 접속한 클라이언트 IP : <%= request.getRemoteAddr() %><br>
+	3. 포트 : <%= request.getServerPort() %><br>
+	4. 경로 : <%= request.getContextPath() %><br>
+	<!-- 
+		웹에서 경로 :                   가상디렉토리                 실제  경로
+		클라이언트가 보는 주소 => 192.168.0.12/Web/a.jsp             c:\\Web\\WebApp\a.jsp 
+	-->
+	 
+	
 </body>
 </html>
