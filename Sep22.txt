@@ -58,3 +58,14 @@ jsp
 include, forward 
 원래 reuqest는 jsp에 페이지는 종속적이다 하지만 include forward를 다른 jsp에 걸면
 거기도 접근된다.
+
+web_inf 폴더는 보안폴더여서 안보임
+또한 가장번저 web_inf 폴더의 web.xml을 로딩해 해석한다.
+xml 파일은 환경 설정파일이기에 web-inf 안에 있는것
+
+web_inf 폴더는 자바의 프라이빗처럼 web_inf 안에서는 서로 잘보이지만 이폴더 밖에서는 안보임
+
+
+C#에서는 마스터페이지 만들어서 처리한다.
+
+include 는 디자인할때 쓰는것

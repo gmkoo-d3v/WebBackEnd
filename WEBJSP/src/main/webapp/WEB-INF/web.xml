@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
-  <display-name>WEBJSP</display-name>
+  <display-name>1</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.xhtml</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.xhtml</welcome-file>
   </welcome-file-list>
+  <context-param>
+  	<description>이 설명은 개발자의 마음대로</description>
+  	<param-name>email</param-name>
+  	<param-value>kosa@kosa.or.kr</param-value>
+  </context-param>
+  <context-param>
+  	<description>기본 업로드 파일 경로</description>
+  	<param-name>filePath</param-name>
+  	<param-value>C:\\Web\\upload</param-value>
+  </context-param>
+  
 </web-app>
