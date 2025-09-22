@@ -1,0 +1,47 @@
+jsp는 html안에 자바 코드가 포함된 것으로 서버사이드 스크립트를 말한다.
+ jsp는 실행시에는 Java Servlet 으로 변환된 후 실행되므로 서블릿과 거의 유사하다고 볼 수 있다. 하지만, 서블릿과는 달리 HTML 표준에 따라 작성되므로 웹페이지 작성이 편리해졌다.
+ 클라이언트에서 서비스가 요청되면, JSP의 실행을 요구하고, JSP는 웹어플리케이션 서버(Tomcat)의 서블릿 컨테이너에서 서블릿 원시코드로 변환된다,
+ 그후에 서블릿 원시코드는 바로 컴파일된 후 실행되어 결과를 HTML 형태로 클라이언트에 돌려준다. 
+ 이렇게 서블릿과 달리 JSP는 코드를 변경할 때마다 WAS에서 자동으로 빌드하고 클라이언트에 화면을 동적으로 보여주기 때문에 개발이 많이 편리해 졌다.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ web 용 자바파일 = servlet
+ 
+ 웹이 동작할라면 리퀘스트 리스폰스를 서버에 보내고 받아야된다.
+ 
+ Provides an abstract class to be subclassed to create an HTTP servlet suitable for a Web site. A subclass of HttpServlet must override at least one method, usually one of these:
+doGet, if the servlet supports HTTP GET requests
+doPost, for HTTP POST requests
+doPut, for HTTP PUT requests
+doDelete, for HTTP DELETE requests
+init and destroy, to manage resources that are held for the life of the servlet
+getServletInfo, which the servlet uses to provide information about itself
+There's almost no reason to override the service method. service handles standard HTTP requests by dispatching them to the handler methods for each HTTP request type (the doXXX methods listed above).
+
+Likewise, there's almost no reason to override the doOptions and doTrace methods.
+
+Servlets typically run on multithreaded servers, so be aware that a servlet must handle concurrent requests and be careful to synchronize access to shared resources. 
+Shared resources include in-memory data such as instance or class variables and external objects such as files, database connections, and network connections.
+ See the Java Tutorial on Multithreaded Programming for more information on handling multiple threads in a Java program.
+ 
+ 
+ 
+ 
+ 서블릿은 db관리가 메인이지 웹페이지를 위한 언어가 아니니 웹페이지를 자바로 만들기는 어려움
+ 디자인도 힘듬 그래서 나온게 jsp
+
+jsp는 화면 만들기는 편함 html 코드를 포함 
+
+
+클라이언트 접속할떄마다 고유 키를 발급해주는데 이게 왕창나오면 서버과부화걸리니  세션객체가 따로 설정안하면 20분정도마다 날려버린다.
