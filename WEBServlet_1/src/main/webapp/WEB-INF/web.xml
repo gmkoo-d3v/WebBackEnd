@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+  <display-name>WEBServlet_1</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>simplecontroller</servlet-name>
+  	<servlet-class>com.SimpleController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	  <servlet-name>simplecontroller</servlet-name>
+  	  <url-pattern>/simple</url-pattern>
+  </servlet-mapping>
+    <!-- 
+	localhost:8090/WEBServlet_1/simple 
+	com.SimpleController.java 컴파일 실행 ....
+	그런데 요청의 method 가 GET > doGET() 자동실행  , POST > doPOST() 자동실행
+	-->
+</web-app>

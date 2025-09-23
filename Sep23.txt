@@ -1,0 +1,147 @@
+*************************
+mvc 모델 2를 이해해야된다
+*************************
+
+
+JSP 
+페이지 2개
+화면+로직처리 (이것이 단짝으로 묶여서 굴러간다)
+
+예시) login.jsp(로그인화면) + 
+<form action="loginok.jsp" <-로그인한데이터
+이거 두개가 한쌍임. 화면주세요
+ + 
+ from action 쪽에서 
+ 데이터 처리해주세요. (한글처리 디비연결 쿼리문(셀렉트문) 데이터 판단 있음 메인화면 없음 로그인실패던지기)
+
+회원가입.jsp & 회원가입ok.jsp 이런식으로 묶는것이다.
+***************************
+화면내놔 & 처리해줘가 공식이다
+***************************
+
+javax면 jakarta로 교체하면된다 톰캣 10버전이후면 jakarta
+
+
+빌드 배포도구 트랜드는 gradle이다
+
+servlet 순서
+default.jsp 
+클릭하면 web.xml타고들가서 simplecontroller 선언된거보고 글로감
+기기서 forward request 타고 작업내리고 simpleview로 던져줌
+simpleview가 표시됨
+
+
+
+
+
+
+
+
+
+
+
+
+개발자 고민 a.jsp > 생성된 > request 메모리_1 > 다른 페이지 공유 >  include , forward  > aaa.jsp 이러면 리퀘스트메모리_1로 공유가되서 리퀘스트메모리가 양산안됨?
+ChatGPT의 말:
+
+좋은 질문이에요 👍 JSP에서 request 메모리(정확히는 request scope)가 어떻게 동작하는지를 헷갈리기 쉬운 부분입니다. 정리해드릴게요.
+
+1. JSP 실행과 request scope
+
+브라우저가 a.jsp를 호출하면 → 톰캣이 HttpServletRequest 객체를 하나 생성.
+
+그 객체는 a.jsp 실행 내내 살아있음.
+
+request.setAttribute("key", value) 같은 걸 하면, 이 request 객체에 저장됨.
+
+2. include / forward 의 동작
+
+include (<jsp:include> or RequestDispatcher.include)
+👉 같은 request 객체를 그대로 전달해서 포함된 JSP도 처리.
+따라서 a.jsp에서 넣은 request 속성이 aaa.jsp에서도 그대로 보임.
+
+forward (RequestDispatcher.forward)
+👉 새로운 response를 만들기는 하지만, request 객체는 그대로 전달됨.
+즉, request scope는 새로 안 생김.
+
+3. request scope가 새로 생기는 경우
+
+브라우저에서 새로 요청(redirect, 링크 클릭, 새 submit 등) 해야 request 객체가 새로 만들어짐.
+
+즉, redirect는 클라이언트가 다시 요청하기 때문에 request scope가 초기화됨.
+
+4. 질문의 시나리오
+
+a.jsp > 생성된 > request 메모리_1 > 다른 페이지 공유 > include, forward > aaa.jsp
+
+✅ 맞습니다.
+
+이 경우 request 메모리_1이 계속 전달됨.
+
+aaa.jsp는 새로운 request 메모리를 만드는 게 아니라, 기존 request 메모리_1을 그대로 공유합니다.
+
+따라서 request 메모리가 “양산”되지 않고, 하나만 유지됩니다.
+
+👉 정리하면:
+
+include/forward → 같은 request 공유
+
+redirect/새 요청 → request 새로 생성
+
+좋습니다 🙆 그럼 request 메모리(request scope)의 생성과 해제 시점까지 이어서 정리해드릴게요.
+
+🔹 request 메모리 생명주기
+
+클라이언트 요청 발생
+
+브라우저가 a.jsp 같은 URL로 요청 → 톰캣이 HttpServletRequest 객체를 새로 생성.
+
+이게 흔히 말하는 request 메모리.
+
+JSP/서블릿 처리 중
+
+request.setAttribute("data", value) 같은 방식으로 데이터 저장 가능.
+
+include나 forward를 하더라도 같은 request 객체를 계속 씀.
+
+응답(HTML) 전송 완료 시점
+
+톰캣이 브라우저로 response를 flush하고 나면, 해당 요청 처리가 끝남.
+
+그 순간 request 객체는 소멸(해제) 됨.
+
+따라서 다음 요청이 들어오면 새로운 request 객체를 새로 만듦.
+
+🔹 scope 비교 (중요 포인트)
+
+request scope
+
+요청 → 응답까지 살아있음.
+
+응답이 끝나면 사라짐.
+
+따라서 브라우저 새로고침/redirect 시 새 request 객체 생성.
+
+session scope
+
+브라우저(클라이언트) 단위로 유지.
+
+기본적으로 JSESSIONID 쿠키로 연결.
+
+브라우저 닫거나 세션 타임아웃 되기 전까지 유지.
+
+application scope
+
+웹 어플리케이션이 켜져 있는 동안(서버 기동~종료).
+
+모든 클라이언트가 공유.
+
+🔹 핵심 요약
+
+request 메모리는 한 번의 요청–응답 사이클 동안만 존재.
+
+include, forward에서는 같은 request를 공유.
+
+응답이 끝나면 GC 대상이 되어서 사라짐 → 새 요청마다 새로 생성됨.
+
+👉 즉, request는 "짧게 쓰는 메모리", session은 "조금 길게 쓰는 메모리", application은 "최장기" 메모리라고 보면 이해가 쉬워요.
