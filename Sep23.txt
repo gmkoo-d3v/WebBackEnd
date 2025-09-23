@@ -24,6 +24,21 @@ javax면 jakarta로 교체하면된다 톰캣 10버전이후면 jakarta
 
 빌드 배포도구 트랜드는 gradle이다
 
+servlet 순서
+default.jsp 
+클릭하면 web.xml타고들가서 simplecontroller 선언된거보고 글로감
+기기서 forward request 타고 작업내리고 simpleview로 던져줌
+simpleview가 표시됨
+
+
+
+
+
+
+
+
+
+
 
 
 개발자 고민 a.jsp > 생성된 > request 메모리_1 > 다른 페이지 공유 >  include , forward  > aaa.jsp 이러면 리퀘스트메모리_1로 공유가되서 리퀘스트메모리가 양산안됨?
