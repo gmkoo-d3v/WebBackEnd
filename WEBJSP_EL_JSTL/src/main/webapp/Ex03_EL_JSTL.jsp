@@ -19,22 +19,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-  <h3>기존방식</h3>
+  <h3>1.기존방식</h3>
   	<%=emp %><br>
   	<%=emp.getEmpno() %><br>
   	<%=emp.getEname() %><br>
   	
-  	<h3>EL</h3>
+  	<h3>2.EL</h3>
   	EL() : 자바 객체 출력(자바 객체에 직접 접근 불가) : ${emp}<br>
   	
-  	<h3>해결사</h3> 
+  	<h3>3.해결사</h3> 
 	1. 객체 접근 : 해결 > request, session 담아서 사용 : Good <br>
 	EL: ${requestScope.e}<br>
 	EL: ${e.empno}<br> <!-- 속성명으로 바로 접근하면 멤버필드로 바로 접근 가능 -->
 	<!-- 속성명(meber field 바로 접근:getEmpno() 호출 -->
 	EL: ${requestScope.e.empno}<br>
 	
-	<h3>JSTL (core) 변수 ,제어문( 자바코드 없이 ) : 서버에서 실행</h3>
+	<h3>4.JSTL (core) 변수 ,제어문( 자바코드 없이 ) : 서버에서 실행</h3>
 	<c:set var="m" value="<%=emp %>" />
 	EL을 통해서 출력: ${m}<br>
 		EL(권장하지 않아요) ${m.getEmpno()}<br>
@@ -44,7 +44,7 @@
 	EL 출력 : ${m.ename}<br>
 	
 	<hr>
-	<h3>JSTL 변수 만들고 scope</h3>
+	<h3>5.JSTL 변수 만들고 scope</h3>
 	<c:set var="job" value="농구선수" scope="request" />
 	당신의 직업은 : ${job}<br>
 	include, forward 사용하면 다른 페이지에서도 job 출력가능

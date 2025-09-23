@@ -11,17 +11,8 @@
 	<c: forEach> 자바에서의 개선된 for문
 	<c:froTokens> 자바에서의 split
 	<c:out EL과 같은 역활>
-	<c:catch 예외처리>
+	<c:catch 예외처리>	
 	
-	EL & JSTL WAS 해석(서버쪽 스크립트)
-	<c:set 변수 생성 값을 저장>
-    <c:if test="조건">
-    <c:choose if 보다 활용도가 좋아요   else if 처리가 가능
-    <c:forEach 
-    <c:forTokens   자바 split
-    <c:out  EL과 같은 역할
-    <c:catch 예외처리
-		
 */
 %>
 <!DOCTYPE html>
