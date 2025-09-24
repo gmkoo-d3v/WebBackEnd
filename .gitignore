@@ -1,1 +1,64 @@
-/.metadata/
+# Eclipse 관련 파일 무시
+
+**/*.classpath
+**/*.classpath
+**/*.project
+**/*.settings/
+**/*.metadata/
+
+# 운영체제별 파일 무시
+**/*.DS_Store
+
+Thumbs.db
+
+**/*.log
+# 빌드 산출물 및 임시 파일 무시
+**/bin/
+**/target/
+**/build/
+**/*.class
+**/*.jar
+**/*.war
+**/*.ear
+**/Servers/
+
+# IDE별 임시 파일
+**/*.iml
+.idea/
+.vscode/
+
+# Java 관련 추가
+**/*.ctxt
+**/*.bluej
+**/*.log
+.mtj.tmp/
+hs_err_pid*
+
+# Maven 관련
+dependency-reduced-pom.xml
+
+# Gradle 관련
+.gradle/
+gradle-app.setting
+
+# 임시 파일들
+**/*.tmp
+**/*.bak
+**/*.swp
+**/*~.nib
+local.properties
+
+# 패키지 파일들
+**/*.zip
+**/*.tar.gz
+**/*.rar
+
+# 보안 관련 (절대 올리면 안됨)
+**/*.key
+**/*.p12
+**/*.jks
+config.properties
+application-local.yml
+
+**/MANIFEST.MF
+**/META-INF/MANIFEST.MF
