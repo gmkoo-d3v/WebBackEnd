@@ -20,7 +20,7 @@ public class MemoServlet extends HttpServlet {
     
     public MemoServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        // 데이터를 쓰는 서블릿
     }
     private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	  //1.한글처리
