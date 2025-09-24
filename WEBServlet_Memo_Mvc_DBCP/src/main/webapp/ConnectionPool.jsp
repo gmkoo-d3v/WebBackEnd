@@ -1,3 +1,4 @@
+<%@page import="java.sql.Connection"%>
 <%@page import="javax.sql.DataSource"%>
 <%@page import="javax.naming.InitialContext"%>
 <%@page import="javax.naming.Context"%>
@@ -32,7 +33,25 @@
 
 	// 웹 서버 메모리 가게 오픈 (튜브 가게 : 20개) > conn 객체 빌려쓰고 다 쓰면 반환 이것을 connection pool 이라고한다
 	// 스프링도 히카리풀사용
+	Connection conn = null;
+	
+	// 빌려주세요 ( 가게 ds)
+	conn = ds.getConnection(); // 튜브 빌리기
+	
+	out.print("DB연결여부 확인(false)"+conn.isClosed()+"<br>");
+	
+	// 놀다가 CRUD 구현 코드 사용
+	// 반드시 반환(method 빌리고 .. 사용 .. 반환 )해야 된다.
+	
+	conn.close(); // 이것 자체가 dbcp에서는 자원해제가 아니고 반환 하는것이다.
+	// pool 에게 반환 하는것
+	
+	out.print("DB연결여부 확인(true)"+conn.isClosed()+"<br>");
 
+	
+	
+	
+	
 %>    
 
     

@@ -70,7 +70,35 @@ public class MemoDao {
 	
 	//조건조회
 	public Memo getMemoListById(String id) {
-		return null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select id , email , content from memo where id=?";
+		Memo memo = new Memo();
+		
+		try {
+			conn = ConnectionPoolHelper.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				memo.setId(rs.getString("id"));
+				memo.setEmail(rs.getString("email"));
+				memo.setContent(rs.getString("content"));
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			ConnectionPoolHelper.close(rs);
+			ConnectionPoolHelper.close(pstmt);
+			ConnectionPoolHelper.close(conn);
+		}
+	
+		
+		return memo;
 	}
 	
 	//삽입
@@ -104,12 +132,56 @@ public class MemoDao {
 	
 	//수정
 	public int updateMemo(Memo memo) {
-		return 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql="update memo set email=? , content=? where id=?";
+		int resultRow = 0;
+		
+		try {
+			  conn = ConnectionPoolHelper.getConnection();
+			  pstmt = conn.prepareStatement(sql);
+			  
+			
+			  pstmt.setString(1, memo.getEmail());
+			  pstmt.setString(2, memo.getContent());
+			  pstmt.setString(3, memo.getId());
+			  
+			  resultRow = pstmt.executeUpdate(); //insert , update , delete
+			  
+					  
+		} catch (Exception e) {
+			 System.out.println("예외발생 : " + e.getMessage());
+		}finally {
+			ConnectionPoolHelper.close(pstmt);
+			ConnectionPoolHelper.close(conn);
+		}
+	
+		return resultRow;
 	}
 	
 	//삭제
 	public int deleteMemo(String id) {
-		return 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql="delete from memo where id=?";
+		int resultRow = 0;
+		
+		try {
+			  conn = ConnectionPoolHelper.getConnection();
+			  pstmt = conn.prepareStatement(sql);
+			  
+			  pstmt.setString(1, id);
+			  resultRow = pstmt.executeUpdate(); //insert , update , delete
+			  
+					  
+		} catch (Exception e) {
+			 System.out.println("예외발생 : " + e.getMessage());
+		}finally {
+			ConnectionPoolHelper.close(pstmt);
+			ConnectionPoolHelper.close(conn);
+		}
+	
+		return resultRow;
 	}
 	
 	//필요에 따라서
@@ -123,4 +195,3 @@ public class MemoDao {
 		return false;
 	}
 }
-
