@@ -30,7 +30,7 @@
                     </h4>
                 </div>
                 <div class="card-body">
-                    <form action="empinsert.do" method="post" id="empForm">
+                    <form action="empinsertok.do" method="post" id="empForm">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
