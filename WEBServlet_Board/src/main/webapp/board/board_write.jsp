@@ -37,14 +37,17 @@ function check(){
 </SCRIPT>
 </head>
 <body>
-	 <%
+	<jsp:include page="/include/header.jsp" />
+	
+	
+	 <%-- <%
         pageContext.include("/include/header.jsp");
-     %>
+     %> --%>
 
     <div id="pageContainer">
         <div style="padding-top: 25px; text-align: center">
             <!-- form 시작 ---------->
-            <form name="bbs" action="board_writeok.jsp" method="POST">
+            <form name="bbs" action="${pageContext.request.contextPath}/board/board_writeok.jsp" method="POST">
                 <table width="95%" border="2" align="center">
                     <tr>
                         <td width="20%" align="center">제목</td>

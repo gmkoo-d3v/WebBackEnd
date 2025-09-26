@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.apache.tomcat.jdbc.pool.ConnectionPool;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -18,8 +18,21 @@ import javax.sql.DataSource;
 import kr.or.bit.dto.Board;
 import kr.or.bit.dto.Reply;
 
+import kr.or.bit.utils.ConnectionHelper;
+import kr.or.bit.utils.ConnectionPoolHelper;
+import kr.or.bit.utils.DBType;
+
+
 //CRUD 함수 > ConnectionPool > 함수단위 연결 ,받환 
 public class BoardDao {
+	
+	
+	
+	
+	
+	
+	
+	
 	DataSource ds = null;
 	
 	public BoardDao() throws NamingException {

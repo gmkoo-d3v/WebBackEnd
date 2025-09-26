@@ -21,7 +21,7 @@
 	<br>
 	<%
 		BoardService service = BoardService.getInBoardService();
-		
+		// 이건 다 컨트롤러랑 유틸리티로 빠지는것
 		//게시물 총 건수
 		int totalboardcount = service.totalBoardCount();
 		

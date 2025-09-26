@@ -1,6 +1,11 @@
 package kr.or.bit.dto;
 import java.util.Date;
 
+import lombok.Data;
+
+
+@Data	
+
 public class Board {  //SELECT * FROM jspboard
 	private int idx;  //jspboard 컬럼명과 동일
 	private String writer;
