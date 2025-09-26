@@ -1,0 +1,91 @@
+package kr.or.bit.controller;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+import kr.or.bit.action.Action;
+// 모든 Action 클래스를 import하여 요청을 분배합니다.
+import kr.or.bit.board.action.*; 
+
+/**
+ * FrontController: 모든 *.do 요청을 받아 해당 Action 클래스에 위임하는 중앙 컨트롤러입니다.
+ */
+@WebServlet("*.do")
+public class FrontController extends HttpServlet {
+	 private static final long serialVersionUID = 1L;
+	
+    public void init() throws ServletException {
+        super.init();
+    }
+	
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 1. 요청 URI 분석 (예: /boardList.do)
+		String requestURI = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		String urlCommand = requestURI.substring(contextPath.length());
+		
+		Action action = null;
+		String viewPage = null;
+		
+		// 2. 요청에 따른 Action 매핑 및 인스턴스 생성 (Command Pattern Dispatch)
+		if (urlCommand.equals("/boardList.do")) {
+			action = new BoardListAction();
+		} else if (urlCommand.equals("/boardWrite.do")) {
+			action = new BoardWriteAction();
+		} else if (urlCommand.equals("/boardWriteOk.do")) {
+			action = new BoardWriteOkAction();
+		} else if (urlCommand.equals("/boardContent.do")) {
+			action = new BoardContentAction();
+		} else if (urlCommand.equals("/boardReplyOk.do")) {
+			action = new BoardReplyOkAction();
+		} else if (urlCommand.equals("/boardReplyDeleteOk.do")) {
+			action = new BoardReplyDeleteOkAction();
+		} else if (urlCommand.equals("/boardEdit.do")) {
+			action = new BoardEditAction();
+		} else if (urlCommand.equals("/boardEditOk.do")) {
+			action = new BoardEditOkAction();
+		} else if (urlCommand.equals("/boardDelete.do")) {
+			action = new BoardDeleteAction();
+		} else if (urlCommand.equals("/boardDeleteOk.do")) {
+			action = new BoardDeleteOkAction();
+		} else if (urlCommand.equals("/boardRewrite.do")) {
+			action = new BoardRewriteAction();
+		} else if (urlCommand.equals("/boardRewriteOk.do")) {
+			action = new BoardRewriteOkAction();
+		}
+		
+		// 3. Action 실행 및 View 경로 얻기
+		if (action != null) {
+			viewPage = action.execute(request, response);
+		}
+		
+		// 4. View 페이지로 이동 (forward 또는 redirect)
+		if (viewPage != null) {
+			// 'redirect:' 접두어가 있다면 리다이렉션 처리
+			if (viewPage.startsWith("redirect:")) {
+				String redirectPath = viewPage.substring("redirect:".length());
+				// ContextPath 포함하여 리다이렉트
+				response.sendRedirect(request.getContextPath() + "/" + redirectPath); 
+			} else {
+				// 그 외는 포워딩 처리 (일반적으로 /WEB-INF/views/ 경로의 JSP)
+				RequestDispatcher dis = request.getRequestDispatcher(viewPage);
+				dis.forward(request, response);
+			}
+		} 
+		// Action이 null이거나 viewPage가 null인 경우 추가적인 오류 처리는 필요에 따라 구현할 수 있습니다.
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request, response);
+	}
+}

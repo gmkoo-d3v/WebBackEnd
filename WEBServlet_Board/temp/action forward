@@ -1,0 +1,22 @@
+package kr.or.bit.action;
+
+/**
+ * Action 인터페이스의 실행 결과를 저장하고 View 페이지로의 이동 방법을 결정하는 DTO입니다.
+ */
+public class ActionForward {
+	private String path; // 다음에 이동할 페이지 경로 (View의 JSP 또는 다른 Controller의 URL)
+	private boolean isRedirect; // true: 리다이렉트(새로운 요청), false: 포워딩(기존 요청 유지)
+	
+	public ActionForward(String path, boolean isRedirect) {
+		this.path = path;
+		this.isRedirect = isRedirect;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public boolean isRedirect() {
+		return isRedirect;
+	}
+}

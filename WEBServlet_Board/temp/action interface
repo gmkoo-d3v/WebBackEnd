@@ -1,0 +1,12 @@
+package kr.or.bit.action;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+/**
+ * 모든 요청을 처리할 개별 Action 클래스가 구현해야 하는 인터페이스입니다.
+ * @return String: 다음에 실행될 View 페이지 경로 (예: "/WEB-INF/views/list.jsp" 또는 "redirect:list.do")
+ */
+public interface Action {
+	public String execute(HttpServletRequest request, HttpServletResponse response);
+}
