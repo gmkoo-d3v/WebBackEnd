@@ -33,29 +33,38 @@ tr:nth-child(even) { /* even 짝수     odd 홀수 */
 
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/header.jsp"/>
+	<jsp:include page="/header.jsp"/>
 	<div align=center>
 		<hr color=green width=400>
-		<h2>Line Memo List</h2>
+		<h2>Line Emp List</h2>
 
 		<hr color=green width=400>
 		<table style="width: 80%">
 			<tr>
-				<th>Writer</th>
-				<th>Email</th>
-				<th>MemoContent</th>
+				<th>Ename</th>
+				<th>Empno</th>
+				<th>Job</th>
+				<th>Mgr</th>
+				<th>Hiredate</th>
+				<th>Sal</th>
+				<th>Comm</th>
+				<th>Deptno</th>
 			</tr>
 			<!--  EL & JSTL 데이터 출력하세요 -->
-			<c:forEach var="memo" items="${requestScope.memoList}">
-				<tr onclick="location.href='memodetail.do?id=${memo.id}'"
+			<c:forEach var="emp" items="${requestScope.empList}">
+				<tr onclick="location.href='empdetail.do?ename=${emp.ename}'"
 					style="cursor: pointer;">
-					<td>${memo.id}</td>
-					<td>${memo.email}</td>
-					<td>${memo.content}</td>
+					<td>${emp.ename}</td>
+					<td>${emp.empno}</td>
+					<td>${emp.job}</td>
+					<td>${emp.mgr}</td>
+					<td>${emp.hiredate}</td>
+					<td>${emp.sal}</td>
+					<td>${emp.comm}</td>
+					<td>${emp.deptno}</td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
-
 </body>
 </html>

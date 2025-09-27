@@ -18,15 +18,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="memolist.do">메모목록보기</a>
+          <a class="nav-link active" aria-current="page" href="emplist.do">사원리스트보기</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="memo.do">글쓰기</a>
+          <a class="nav-link" href="emp.do">사원정보추가</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 </body>
-
 </html>

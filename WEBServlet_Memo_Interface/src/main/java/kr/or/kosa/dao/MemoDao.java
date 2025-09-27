@@ -187,7 +187,41 @@ public class MemoDao {
 	}
 	
 	//ID유무
-	public boolean isCheckById(String id) {
-		return false;
+	public String isCheckById(String id) {
+		
+		String ismemoid=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql="select id from memo where id=?";
+
+		Connection conn = null;
+		try {
+			  conn = ConnectionPoolHelper.getConnection();
+			  pstmt = conn.prepareStatement(sql);
+			  pstmt.setString(1, id);
+			  		
+			  rs = pstmt.executeQuery();
+			  if(rs.next()) { //동일한 ID 있다
+				  //같은 ID 존재
+				  ismemoid = "false";
+			  }else {
+				  //사용가능한 ID
+				  ismemoid = "true";
+			  }
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			ConnectionPoolHelper.close(rs);
+			ConnectionPoolHelper.close(pstmt);
+			try {
+				ConnectionPoolHelper.close(conn); //반환하기
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+		
+		return ismemoid;
+		
 	}
 }

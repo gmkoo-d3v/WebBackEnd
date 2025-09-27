@@ -4,9 +4,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kr.or.kosa.action.Action;
 import kr.or.kosa.action.ActionForward;
-import kr.or.kosa.dao.MemoDao;
+import kr.or.kosa.dao.empDao;
 
-public class MemoIdCheckService  implements Action{
+public class EmpEmpnoCheckerService implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
@@ -15,9 +15,9 @@ public class MemoIdCheckService  implements Action{
 		String idCheck = null;
 		
 		try {
-			String id=request.getParameter("id");
-			MemoDao memoDao = new MemoDao();
-			idCheck = memoDao.isCheckById(id);
+			String id=request.getParameter("empno");
+			empDao empDao = new empDao();
+			idCheck = empDao.isCheckById(empno);
 			
 			System.out.println("idCheck : " + idCheck);
 			

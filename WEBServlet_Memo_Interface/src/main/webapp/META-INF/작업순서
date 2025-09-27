@@ -103,5 +103,28 @@ public class MemoListService  implements Action 강제 ....
 
 kr.or.kosa.ajax
 
+두가지
+
+1. 기존 논리대로 
+MemoIdCheckService 만들어서 >> view 만들어서 >> uservalid.jsp 만들어서 
+
+else if(urlCommand.equals("/MemoId.memo)){//목록보기
+	action =new MemoIdCheckService();//다형성
+	forward = action.execute(request .response);	
+}
+
+2. 별도로 servlet 을 만들어서 처리 (UI가 없는 경우 이게 편하다)
+
+>> ajax >> idCheck.java  >>  @WebServlet("/MemoId")
+        >> ReplyAdd.java >>  @WebServlet("/ReplyAdd")
+
+		이런식으로 빼서 아에 컨트롤러 안타게 만듬 
+
+   ------------------------------------------------------------------------------
+   인증처리
+   
+   session 처리
+   servlet session 처리하기
+   
     
         
